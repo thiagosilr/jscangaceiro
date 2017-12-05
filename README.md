@@ -22,3 +22,6 @@
 |JavaScript|jQuery|
 |----------|------|
 |document.querySelector('#data')|$('#data')|
+|document.querySelector('.form').addEventListener('submit', function(event) {})|$('.form').submit(function(event) {})|
+|document.createElement('td')|$('<td>')|
+|document.querySelector('tr').appendChild()|$('td').append()|
