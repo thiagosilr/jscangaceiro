@@ -33,3 +33,14 @@ Pelos estudos que realizei o padrão que desenvolvemos hoje é o ECMAScript 3 de
 
 Em 2016 foi lançado o ECMAScript 6 que o padrão adotado no livro. Neste mesmo ano a ECMA International/TC39 resolve adotar a padronização do ECMAScript para anual. Portanto no futuro veremos a padronização desta forma ECMAScript 2017...2018...2019. Assim o JavaScript teria uma evoluação mais constante.
 
+### Compatibilidade
+|Plataforma|Navegador|Porcentagem de compatibilidade|
+|----------|---------|------------------------------|
+|Mobile|iOS 9 Safari|53%|
+|Mobile|iOS >= 10 Safari|99%|
+|Desktop|Safari 9|53%|
+|Desktop|Safari >= 10|99%|
+|Desktop|Chrome >= 54|97%|
+|Desktop|Opera >= 41|97%|
+|Desktop|Firefox >= 50|92% a 97%|
+|Desktop|Edge >= 12|60% a 96%|
