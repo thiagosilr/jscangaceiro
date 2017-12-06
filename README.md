@@ -25,3 +25,10 @@
 |document.querySelector('.form').addEventListener('submit', function(event) {})|$('.form').submit(function(event) {})|
 |document.createElement('td')|$('<td>')|
 |document.querySelector('tr').appendChild()|$('td').append()|
+
+## JavaScript (ECMAScript 6 / ES6 / ECMAScript 2015)
+ECMAScript, nome raiz do JavaScript. E o nome da padronização controlada pela [ECMA International](https://www.ecma-international.org/).
+Pelos estudos que realizei o padrão que desenvolvemos hoje é o ECMAScript 3 (1999). Que possui ampla compatibilidade com os nevagadores mais antigos.
+Em 2016 sai o ECMAScript 6 que o padrão adotado no livro. Neste mesmo ano a ECMA International/TC39 resolve anualizar a padronização do ECMAScript.
+Portanto no futuro veremos a padronização desta forma ECMAScript 2017...2018...2019. Assim o JavaScript teria uma evoluação mais constante.
+
