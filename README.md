@@ -2,6 +2,7 @@
 
 ## GIT
 [Client](https://git-for-windows.github.io/)
+
 [Guia comandos](http://rogerdudler.github.io/git-guide/index.pt_BR.html)
 
 ```
@@ -23,7 +24,7 @@
 |----------|------|
 |document.querySelector('#data')|$('#data')|
 |document.querySelector('.form').addEventListener('submit', function(event) {})|$('.form').submit(function(event) {})|
-|document.createElement('td')|$('<td>')|
+|document.createElement('td')|$('&lt;td&gt;')|
 |document.querySelector('tr').appendChild()|$('td').append()|
 
 ## JavaScript (ECMAScript 6 / ES6 / ECMAScript 2015)
@@ -34,8 +35,8 @@ Pelos estudos que realizei o padrão que desenvolvemos hoje é o ECMAScript 3 de
 Em 2016 foi lançado o ECMAScript 6 que o padrão adotado no livro. Neste mesmo ano a ECMA International/TC39 resolve adotar a padronização do ECMAScript para anual. Portanto no futuro veremos a padronização desta forma ECMAScript 2017...2018...2019. Assim o JavaScript teria uma evoluação mais constante.
 
 ### Compatibilidade
-|Plataforma|Navegador|Porcentagem de compatibilidade|
-|----------|---------|------------------------------|
+|Plataforma|Navegador|Compatibilidade|
+|----------|---------|---------------|
 |Mobile|iOS 9 Safari|53%|
 |Mobile|iOS >= 10 Safari|99%|
 |Desktop|Safari 9|53%|
