@@ -14,9 +14,10 @@
 
 6 - git checkout -b <nome-branch> (Cria um novo branch e acessa o mesmo);
 7 - git checkout <nome-branch> (Acessa outro branch);
-8 - git branch -d <nome-branch> (Remove branch);
+8 - git branch -d <nome-branch> (Remove branch local);
+9 - git push origin --delete <nome-branch> (Remove branch remoto)
 
-9 - git pull origin <nome-branch> (Obtem as modificações do git remoto)
+10 - git pull origin <nome-branch> (Obtem as modificações do git remoto)
 ```
 
 ## Comparação JavaScript/jQuery
