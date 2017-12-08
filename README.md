@@ -18,6 +18,8 @@
 9 - git push origin --delete <nome-branch> (Remove branch remoto)
 
 10 - git pull origin <nome-branch> (Obtem as modificações do git remoto)
+
+11 - git merge <nome-branch> (Realize o chekcout onde quer realizar o merge. E escreva o branch a qual deseja copiar as informações.)
 ```
 
 ## Comparação JavaScript/jQuery
