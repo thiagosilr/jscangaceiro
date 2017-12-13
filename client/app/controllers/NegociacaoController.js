@@ -1,16 +1,17 @@
 class NegociacaoController {
+	constructor() {
+		let $ = document.querySelector.bind(document);
+		this._CampoData = $('#data');
+		this._CampoQuantidade = $('#quantidade');
+		this._CampoValor = $('#valor');
+	}
+
 	Adicionar(event) {
 		event.preventDefault();
 
-		// Obtem os dados do formulário
-		let $ = document.querySelector.bind(document);
-		let campoData = $('#data');
-		let campoQuantidade = $('#quantidade');
-		let campoValor = $('#valor');
-
-		console.log(campoData.value);
-		console.log(parseInt(campoQuantidade.value));
-		console.log(parseFloat(campoValor.value));
+		console.log(this._CampoData.value);
+		console.log(parseInt(this._CampoQuantidade.value));
+		console.log(parseFloat(this._CampoValor.value));
 
 		console.log('Ação executada');
 	}
