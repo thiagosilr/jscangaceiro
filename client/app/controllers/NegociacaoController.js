@@ -9,10 +9,19 @@ class NegociacaoController {
 	Adicionar(event) {
 		event.preventDefault();
 
-		console.log(this._CampoData.value);
-		console.log(parseInt(this._CampoQuantidade.value));
-		console.log(parseFloat(this._CampoValor.value));
+		let data = new Date(
+			...this._CampoData.value.split('-')
+			.map(function(item, indice) {
+				return item - indice % 2;
+			})
+		);
 
-		console.log('Ação executada');
+		let negociacao = new Negociacao(
+			data,
+			this._CampoQuantidade.value,
+			this._CampoValor.value
+		);
+
+		console.log(negociacao);
 	}
 }

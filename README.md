@@ -70,3 +70,26 @@ for (var i = 0; i < 2; i++) {
 }
 console.log(nome);
 ```
+
+## Operador Spread
+Implementado no ECMAScript 5.
+Utilizado para passarmos cada posição do vetor como parêmetro de uma função.
+Para utilizar basta colocar "..." antes do vetor.
+
+Ex.:
+```JavaScript
+function a (p1, p2, p3) {
+	console.log(p1);
+	console.log(p2);
+	console.log(p3);
+}
+var b = [1,2,3];
+a(...b);
+```
+
+Será impresso:
+```JavaScript
+1
+2
+3
+```
