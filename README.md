@@ -113,3 +113,16 @@ Ex. com uma linha:
 ```JavaScript
 var b = (x, y) => console.log('x: ' + x + 'y: ' + y);
 ```
+
+## Classe estrutura
+```JavaScript
+class Nome {
+	constructor() {
+
+	}
+
+	static MetodoEstatico(parametro) {
+	
+	}
+}
+```

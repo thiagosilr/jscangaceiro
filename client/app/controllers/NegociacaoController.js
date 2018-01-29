@@ -9,10 +9,7 @@ class NegociacaoController {
 	Adicionar(event) {
 		event.preventDefault();
 
-		let data = new Date(
-			...this._CampoData.value.split('-')
-			.map((item, indice) => item - indice % 2)
-		);
+		let data = DataConverter.ParaData(this._CampoData.value);
 
 		let negociacao = new Negociacao(
 			data,
