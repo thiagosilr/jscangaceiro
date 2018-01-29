@@ -93,3 +93,23 @@ Será impresso:
 2
 3
 ```
+
+## Arrow functions
+Implementado no ECMAScript 6.
+A ideia aqui é trazer menor verbosidade para a linguagem. Tornando a escrita do algoritimo objetiva e limpa.
+Com arrow functions não temos necessidade de ficar escrevendo a palavra function toda vez que criarmos uma função.
+
+Ex. com várias linhas:
+```JavaScript
+var a = (c, d) => {
+	console.log('parâmetro c: ' + c);
+	console.log('parâmetro d: ' + d);
+}
+
+a('thiago', 'resende');
+```
+
+Ex. com uma linha:
+```JavaScript
+var b = (x, y) => console.log('x: ' + x + 'y: ' + y);
+```
