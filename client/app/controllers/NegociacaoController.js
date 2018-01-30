@@ -5,6 +5,9 @@ class NegociacaoController {
 		this._CampoQuantidade = $('#quantidade');
 		this._CampoValor = $('#valor');
 		this._Negociacoes = new Negociacoes();
+		this._NegociacoesView = new NegociacoesView('#negociacoes');
+
+		this._NegociacoesView.Update(this._Negociacoes);
 	}
 
 	Adicionar(event) {
@@ -19,6 +22,8 @@ class NegociacaoController {
 		this._Negociacoes.Adicionar(negociacao);
 
 		this._LimparFormulario();
+
+		this._NegociacoesView.Update(this._Negociacoes);
 	}
 
 	_LimparFormulario() {
