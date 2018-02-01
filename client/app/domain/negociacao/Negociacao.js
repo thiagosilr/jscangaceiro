@@ -4,6 +4,7 @@ class Negociacao {
 		this._Data = data;
 		this._Quantidade = quantidade;
 		this._Valor = valor;
+		this._Volume = this.ObterVolume();
 
 		// Congela as novas instãncias desta classe. Não sendo permitido alterar os atributos de forma direta.
 		Object.freeze(this);
