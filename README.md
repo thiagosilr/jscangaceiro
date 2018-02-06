@@ -116,13 +116,22 @@ var b = (x, y) => console.log('x: ' + x + 'y: ' + y);
 
 ## Classe estrutura
 ```JavaScript
-class Nome {
+class Pessoa {
 	constructor() {
 
 	}
 
 	static MetodoEstatico(parametro) {
 	
+	}
+
+	get Nome() {
+
+	}
+
+	// Parâmetro com valor padrão.
+	set Nome(nome = 'Thiago') {
+
 	}
 }
 ```

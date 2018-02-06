@@ -13,9 +13,7 @@ class Negociacoes {
 
 	get VolumeTotal() {
 		return this._negociacoes.reduce(
-			(total, negociacao) => {
-				total + negociacao._Volume
-			}, 0
+			(total, negociacao) => (total + negociacao._Volume), 0
 		);
 	}
 }

@@ -8,6 +8,8 @@ class NegociacaoController {
 		this._NegociacoesView = new NegociacoesView('#negociacoes');
 
 		this._NegociacoesView.Update(this._Negociacoes);
+
+		this._Mensagem = new Mensagem();
 	}
 
 	Adicionar(event) {
@@ -20,6 +22,8 @@ class NegociacaoController {
 			this._CampoValor.value
 		);
 		this._Negociacoes.Adicionar(negociacao);
+
+		this._Mensagem.Texto = 'Negociação adicionada com sucesso.';
 
 		this._LimparFormulario();
 
