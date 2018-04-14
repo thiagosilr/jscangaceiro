@@ -49,7 +49,7 @@ Em 2016 foi lançado o ECMAScript 6 que o padrão adotado no livro. Neste mesmo 
 |Desktop|Firefox >= 50|92% a 97%|
 |Desktop|Edge >= 12|60% a 96%|
 
-## Declarando várialvel com let
+## Declarando variável com let
 Ao declarar uma variável com **var** dentro de um bloco de instruções por exemplor um **for**. A variável está acessível fora do escopo.
 A questão do escopo com o **var** somente funciona quando declarado dentro de uma função.
 
@@ -62,7 +62,7 @@ for (var i = 0; i < 2; i++) {
 console.log(nome);
 ```
 
-## Declarando várialvel com const
+## Declarando variável com const
 Ao declarar uma variável com **const** a mesma é obrigada a receber um valor durante a declaração. 
 E outra regra é não podermos alterar seu valor após sua declaração.
 
