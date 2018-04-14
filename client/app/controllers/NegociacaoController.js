@@ -4,7 +4,9 @@ class NegociacaoController {
 		this._CampoData = $('#data');
 		this._CampoQuantidade = $('#quantidade');
 		this._CampoValor = $('#valor');
-		this._Negociacoes = new Negociacoes();
+		this._Negociacoes = new Negociacoes(model => {
+			this._NegociacoesView.Update(model);
+		});
 		this._NegociacoesView = new NegociacoesView('#negociacoes');
 		this._MensagemView = new MensagemView('#mensagem-view');
 		this._Mensagem = new Mensagem();
@@ -28,8 +30,6 @@ class NegociacaoController {
 		this._MensagemView.Update(this._Mensagem);
 
 		this._LimparFormulario();
-
-		this._NegociacoesView.Update(this._Negociacoes);
 	}
 
 	_LimparFormulario() {
@@ -37,5 +37,11 @@ class NegociacaoController {
 		this._CampoQuantidade.value	= 1;
 		this._CampoValor.value = 0.0
 		this._CampoData.focus();
+	}
+
+	Apagar() {
+		this._Negociacoes.Esvaziar();
+		this._Mensagem.Texto = 'Negociações apagadas com sucesso.';
+		this._MensagemView.Update(this._Mensagem);
 	}
 }
