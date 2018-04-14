@@ -117,21 +117,86 @@ var b = (x, y) => console.log('x: ' + x + 'y: ' + y);
 ## Classe estrutura
 ```JavaScript
 class Pessoa {
-	constructor() {
-
+	constructor(nome, sexo, pais = 'Brasil') {
+		this._Nome = nome;
+		this._Sexo = sexo;
+		this._Pais = pais;
 	}
 
 	static MetodoEstatico(parametro) {
-	
+		
 	}
 
 	get Nome() {
-
+		if (this._Sexo == 'M') {
+			return 'Sr. ' + this._Nome;
+		} else {
+			return 'Sra. ' + this._Nome;
+		}
 	}
 
-	// Parâmetro com valor padrão.
-	set Nome(nome = 'Thiago') {
+	set Nome(nome) {
+		this._Nome = nome.toUpperCase();
+	}
 
+	get Sexo() {
+		if (this._Sexo == 'M') {
+			return 'Masculino';
+		} else {
+			return 'Feminino';
+		}
+	}
+
+	get Pais() {
+		return this._Pais;
 	}
 }
+
+class Funcionario extends Pessoa {
+	constructor(matricula, nome, sexo, pais = 'Brasil') {
+		super(nome, sexo, pais);
+		this._Matricula = matricula;
+	}
+
+	get Matricula() {
+		return this._Matricula;
+	}
+
+	set Matricula(matricula) {
+		this._Matricula = matricula;
+	}
+}
+```
+
+## Função Reduce
+Pecorre todos os itens de um array. E o resultado do cálculo realizado é inserido ao primeiro 
+parâmetro da função.
+
+Ex.:
+```JavaScript
+var carrinhoDeCompra = [
+	{
+		Nome: 'Produto1',
+		Valor: 10.99
+	},
+	{
+		Nome: 'Produto2',
+		Valor: 1
+	},
+	{
+		Nome: 'Produto3',
+		Valor: 2
+	}
+];
+
+var total = carrinhoDeCompra.reduce(function(total,	produto) {	
+	return	total + produto.Valor
+}, 0);
+
+console.log(total);
+```
+
+Será impresso:
+```JavaScript
+13.99
 ```
