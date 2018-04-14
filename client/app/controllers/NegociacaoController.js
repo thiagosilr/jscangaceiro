@@ -1,6 +1,6 @@
 class NegociacaoController {
 	constructor() {
-		let $ = document.querySelector.bind(document);
+		const $ = document.querySelector.bind(document);
 		this._CampoData = $('#data');
 		this._CampoQuantidade = $('#quantidade');
 		this._CampoValor = $('#valor');
