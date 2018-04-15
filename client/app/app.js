@@ -1,4 +1,6 @@
 const controller = new NegociacaoController();
+const $	= document.querySelector.bind(document);
 
-document.querySelector('.form').addEventListener('submit', controller.Adicionar.bind(controller));
-document.querySelector('#botao-apagar').addEventListener('click', controller.Apagar.bind(controller));
+$('.form').addEventListener('submit', controller.Adicionar.bind(controller));
+$('#botao-apagar').addEventListener('click', controller.Apagar.bind(controller));
+$('#botao-importar').addEventListener('click', controller.Importar.bind(controller));

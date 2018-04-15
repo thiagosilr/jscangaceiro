@@ -16,6 +16,8 @@ class NegociacaoController {
 			new MensagemView('#mensagem-view'),
 			'Texto'
 		);
+
+		this._Service = new NegociacaoService();
 	}
 
 	Adicionar(event) {
@@ -51,5 +53,19 @@ class NegociacaoController {
 	Apagar() {
 		this._Negociacoes.Esvaziar();
 		this._Mensagem.Texto = 'Negociações apagadas com sucesso.';
+	}
+
+	Importar() {
+		this._Service.ObterNegociacoesDaSemana((erro, negociacoes) => {
+			if (erro)  {
+				this._Mensagem.Texto = erro;
+				return;
+			}
+
+			negociacoes.forEach(negociacao	=> {
+				this._Negociacoes.Adicionar(negociacao);
+				this._Mensagem.texto = 'Negociações	importadas com sucesso';
+			});
+		});
 	}
 }
