@@ -4,29 +4,18 @@ class NegociacaoController {
 		this._CampoData = $('#data');
 		this._CampoQuantidade = $('#quantidade');
 		this._CampoValor = $('#valor');
+		
+		this._Negociacoes = new Bind(
+			new Negociacoes(),
+			new NegociacoesView('#negociacoes'),
+			'Adicionar', 'Esvaziar'
+		);
 
-		const self = this;
-		this._Negociacoes = new Proxy(new Negociacoes(), {
-			get(target, prop, receiver) {
-				// Se for um função (método) sendo executado.
-				if (typeof(target[prop]) == typeof(Function) && ['Adicionar', 'Esvaziar'].includes(prop)) {
-					return function() {
-						// Executa o método solicitado.
-						target[prop].apply(target, arguments);
-						// Executa a ação após executação do método solicitado.
-						self._NegociacoesView.Update(target);
-					}
-				} else {
-					return target[prop];
-				}
-			}
-		});
-		this._NegociacoesView = new NegociacoesView('#negociacoes');
-		this._MensagemView = new MensagemView('#mensagem-view');
-		this._Mensagem = new Mensagem();
-
-		this._NegociacoesView.Update(this._Negociacoes);
-		this._MensagemView.Update(this._Mensagem);
+		this._Mensagem = new Bind(
+			new Mensagem(),
+			new MensagemView('#mensagem-view'),
+			'Texto'
+		);
 	}
 
 	Adicionar(event) {
@@ -39,10 +28,7 @@ class NegociacaoController {
 			this._CampoValor.value
 		);
 		this._Negociacoes.Adicionar(negociacao);
-
 		this._Mensagem.Texto = 'Negociação adicionada com sucesso.';
-		this._MensagemView.Update(this._Mensagem);
-
 		this._LimparFormulario();
 	}
 
@@ -56,6 +42,5 @@ class NegociacaoController {
 	Apagar() {
 		this._Negociacoes.Esvaziar();
 		this._Mensagem.Texto = 'Negociações apagadas com sucesso.';
-		this._MensagemView.Update(this._Mensagem);
 	}
 }
