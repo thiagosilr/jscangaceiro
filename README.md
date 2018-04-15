@@ -1,4 +1,4 @@
-# Estudo do Livro Cangaceiro JS
+# Estudo do Livro Cangaceiro JS (ECMAScript 6)
 
 ## GIT
 [Client](https://git-for-windows.github.io/)
@@ -49,7 +49,8 @@ Em 2016 foi lançado o ECMAScript 6 que o padrão adotado no livro. Neste mesmo 
 |Desktop|Firefox >= 50|92% a 97%|
 |Desktop|Edge >= 12|60% a 96%|
 
-## Declarando variável com let
+## Variáveis
+### let
 Ao declarar uma variável com **var** dentro de um bloco de instruções por exemplor um **for**. A variável está acessível fora do escopo.
 A questão do escopo com o **var** somente funciona quando declarado dentro de uma função.
 
@@ -62,7 +63,7 @@ for (var i = 0; i < 2; i++) {
 console.log(nome);
 ```
 
-## Declarando variável com const
+### const
 Ao declarar uma variável com **const** a mesma é obrigada a receber um valor durante a declaração. 
 E outra regra é não podermos alterar seu valor após sua declaração.
 
@@ -89,7 +90,8 @@ Será impresso:
 3
 ```
 
-## Arrow functions
+## Funções
+### Arrow
 Implementado no ECMAScript 6.
 A ideia aqui é trazer menor verbosidade para a linguagem. Tornando a escrita do algoritimo objetiva e limpa.
 Com arrow functions não temos necessidade de ficar escrevendo a palavra function toda vez que criarmos uma função.
@@ -107,6 +109,49 @@ a('thiago', 'resende');
 Ex. com uma linha:
 ```JavaScript
 var b = (x, y) => console.log('x: ' + x + 'y: ' + y);
+```
+
+### Reduce
+Pecorre todos os itens de um array. E o resultado do cálculo realizado é inserido ao primeiro 
+parâmetro da função.
+
+Ex.:
+```JavaScript
+var carrinhoDeCompra = [
+	{
+		Nome: 'Produto1',
+		Valor: 10.99
+	},
+	{
+		Nome: 'Produto2',
+		Valor: 1
+	},
+	{
+		Nome: 'Produto3',
+		Valor: 2
+	}
+];
+
+var total = carrinhoDeCompra.reduce(function(total,	produto) {	
+	return	total + produto.Valor
+}, 0);
+
+console.log(total);
+```
+
+Será impresso:
+```JavaScript
+13.99
+```
+
+### Includes
+Verifica se uma determinada palavra existe dentro de uma vetor (array).
+```JavaScript
+// Retorna true
+['Thiago', 'Resende'].includes('Resende');
+
+// Retorna false
+['Thiago', 'Resende'].includes('Silva');
 ```
 
 ## Classe estrutura
@@ -163,35 +208,37 @@ class Funcionario extends Pessoa {
 }
 ```
 
-## Função Reduce
-Pecorre todos os itens de um array. E o resultado do cálculo realizado é inserido ao primeiro 
-parâmetro da função.
+## Proxy
+Utilizado para monitorar quando uma propridade de um objeto é lida ou modificada.
+**target**: O objeto original passado como o primeiro parâmetro do objeto Proxy.
+**prop**: Nome da propriedade que foi lida ou alterada.
+**receiver**: O objeto proxy em execução.
+**value**: O valor que esta sendo inserido na propriedade.
 
 Ex.:
 ```JavaScript
-var carrinhoDeCompra = [
-	{
-		Nome: 'Produto1',
-		Valor: 10.99
+class Pessoa {
+}
+
+let proxy = new Proxy(new Pessoa(), {
+	get(target, prop, receiver) {
+		console.log(`A propriedade ${prop} foi lida`);
+		return target[prop];
 	},
-	{
-		Nome: 'Produto2',
-		Valor: 1
-	},
-	{
-		Nome: 'Produto3',
-		Valor: 2
+	set(target, prop, value, receiver) {
+		console.log(`A propriedade ${prop} foi modificada. Recebendo o valor ${value}`);
+
+		/* Altera o objeto "target" na propiedade "prop" com o valor "value". E retorna true ou false
+		   caso ocorra com sucesso.
+
+		   Não tendo a necessidade de executar o seguinte código:
+		   target[prop] = value;
+		   return true;
+		*/
+		return Reflect.set(target, prop, value);
 	}
-];
+});
 
-var total = carrinhoDeCompra.reduce(function(total,	produto) {	
-	return	total + produto.Valor
-}, 0);
-
-console.log(total);
-```
-
-Será impresso:
-```JavaScript
-13.99
+proxy.Nome = 'Thiago';
+proxy.Nome;
 ```

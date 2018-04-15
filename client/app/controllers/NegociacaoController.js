@@ -4,8 +4,22 @@ class NegociacaoController {
 		this._CampoData = $('#data');
 		this._CampoQuantidade = $('#quantidade');
 		this._CampoValor = $('#valor');
-		this._Negociacoes = new Negociacoes(model => {
-			this._NegociacoesView.Update(model);
+
+		const self = this;
+		this._Negociacoes = new Proxy(new Negociacoes(), {
+			get(target, prop, receiver) {
+				// Se for um função (método) sendo executado.
+				if (typeof(target[prop]) == typeof(Function) && ['Adicionar', 'Esvaziar'].includes(prop)) {
+					return function() {
+						// Executa o método solicitado.
+						target[prop].apply(target, arguments);
+						// Executa a ação após executação do método solicitado.
+						self._NegociacoesView.Update(target);
+					}
+				} else {
+					return target[prop];
+				}
+			}
 		});
 		this._NegociacoesView = new NegociacoesView('#negociacoes');
 		this._MensagemView = new MensagemView('#mensagem-view');
