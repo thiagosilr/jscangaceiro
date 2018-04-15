@@ -19,17 +19,26 @@ class NegociacaoController {
 	}
 
 	Adicionar(event) {
-		event.preventDefault();
+		try {
+			event.preventDefault();
 
-		let data = DataConverter.ParaData(this._CampoData.value);
-		let negociacao = new Negociacao(
-			data,
-			this._CampoQuantidade.value,
-			this._CampoValor.value
-		);
-		this._Negociacoes.Adicionar(negociacao);
-		this._Mensagem.Texto = 'Negociação adicionada com sucesso.';
-		this._LimparFormulario();
+			let data = DataConverter.ParaData(this._CampoData.value);
+			let negociacao = new Negociacao(
+				data,
+				this._CampoQuantidade.value,
+				this._CampoValor.value
+			);
+			this._Negociacoes.Adicionar(negociacao);
+			this._Mensagem.Texto = 'Negociação adicionada com sucesso.';
+			this._LimparFormulario();
+		} catch(ex) {
+			console.log(ex);
+			console.log(ex.stack);
+
+			if (ex instanceof DataInvalidaException) {
+				this._Mensagem.Texto = ex.message;
+			}
+		}
 	}
 
 	_LimparFormulario() {
