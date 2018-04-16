@@ -242,3 +242,208 @@ let proxy = new Proxy(new Pessoa(), {
 proxy.Nome = 'Thiago';
 proxy.Nome;
 ```
+
+## Promise
+É o resultado futuro de uma ação. Geralmente utilizado para tratar operações assíncronas.
+
+Ex. de chamada de função simples:
+```JavaScript
+function obterDados() {
+	return new Promise((resolve, reject) => {
+		const dados = [
+			{
+				Nome: 'Thiago'
+			},
+			{
+				Nome: 'João'
+			},
+			{
+				Nome: 'Maria'
+			}
+		];
+
+		if (dados.length > 0) {
+			resolve(dados);
+		} else {
+			reject('Nenhuma informação encontrada.');
+		}
+	});
+}
+
+// Utilizando functions.
+obterDados()
+	.then(
+		function(dados) {
+			console.log(dados);
+		},
+		function(erro) {
+			console.log(erro);
+		}
+	);
+
+// Utilizando arrow.
+obterDados()
+	.then(
+		dados => {
+			console.log(dados);
+		},
+		erro => {
+			console.log(erro);
+		}
+	);
+```
+
+Ex. de chamada com ajax:
+```JavaScript
+function obterDados() {
+	return new Promise((resolve, reject) => {
+		const xhr = new XMLHttpRequest();
+		xhr.open('GET', 'http://site.com.br/dados');
+		
+		xhr.onreadystatechange = ()=> {
+			if (xhr.readyState == 4) {
+				if (xhr.status == 200) {
+					resolve(JSON.parse(xhr.responseText));
+				} else {
+					reject(xhr.reponseText);
+				}
+			}
+		};
+
+		xhr.send();
+	});
+}
+
+// Utilizando arrow.
+obterDados()
+	.then(
+		dados => {
+			console.log(dados);
+		},
+		erro => {
+			console.log(erro);
+		}
+	);
+```
+
+Ex. de multiplas requisições em série (Para aninhar varios "then" basta no anterior retorna um promise):
+```JavaScript
+function obterDados() {
+	return new Promise((resolve, reject) => {
+		const dados = [
+			{
+				Nome: 'A'
+			},
+			{
+				Nome: 'B'
+			},
+			{
+				Nome: 'C'
+			}
+		];
+
+		if (dados.length > 0) {
+			resolve(dados);
+		} else {
+			reject('Nenhuma informação encontrada.');
+		}
+	});
+}
+
+function obterDados1() {
+	return new Promise((resolve, reject) => {
+		const dados = [
+			{
+				Nome: 'D'
+			},
+			{
+				Nome: 'E'
+			},
+			{
+				Nome: 'F'
+			}
+		];
+
+		if (dados.length > 0) {
+			resolve(dados);
+		} else {
+			reject('Nenhuma informação encontrada.');
+		}
+	});
+}
+
+obterDados()
+	.then(
+		dados => {
+			console.log(dados);
+			return ObterDados1();
+		}
+	)
+	.then(
+		dados1 => {
+			console.log(dados1);
+		}
+	)
+	.catch(erro => { 
+		console.log(erro); 
+	});
+```
+
+Ex. de multiplas requisições em paralelo. São executados paralelamente mas o método then somente é excutado.
+quando todas promises forem executadas. É retornado um array, onde cada posição é o resultado de uma promise:
+```JavaScript
+function obterDados() {
+	return new Promise((resolve, reject) => {
+		const dados = [
+			{
+				Nome: 'A'
+			},
+			{
+				Nome: 'B'
+			},
+			{
+				Nome: 'C'
+			}
+		];
+
+		if (dados.length > 0) {
+			resolve(dados);
+		} else {
+			reject('Nenhuma informação encontrada.');
+		}
+	});
+}
+
+function obterDados1() {
+	return new Promise((resolve, reject) => {
+		const dados = [
+			{
+				Nome: 'D'
+			},
+			{
+				Nome: 'E'
+			},
+			{
+				Nome: 'F'
+			}
+		];
+
+		if (dados.length > 0) {
+			resolve(dados);
+		} else {
+			reject('Nenhuma informação encontrada.');
+		}
+	});
+}
+
+Promise.all([
+	obterDados(),
+	obterDados1()
+])
+.then(dados => {
+	console.log(dados);
+})
+.catch(erro => {
+	console.log(erro);
+});
+```

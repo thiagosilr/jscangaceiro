@@ -56,16 +56,45 @@ class NegociacaoController {
 	}
 
 	Importar() {
-		this._Service.ObterNegociacoesDaSemana((erro, negociacoes) => {
-			if (erro)  {
-				this._Mensagem.Texto = erro;
-				return;
-			}
+		this._Service
+			.ObterNegociacoesDoPeriodo()
+			.then(negociacoes => {
+				negociacoes
+					.filter(novaNegociacao => 
+						!this._Negociacoes
+							.ParaArray()
+							.some(negociacaoExistente => 
+								novaNegociacao.Igual(negociacaoExistente)
+							)
+					)
+					.forEach(negociacao => this._Negociacoes.Adicionar(negociacao));
+				this._Mensagem.Texto = 'Negociações	do	período	importadas com sucesso';
+			})
+			.catch(erro	=> this._Mensagem.Texto = erro);
 
-			negociacoes.forEach(negociacao	=> {
-				this._Negociacoes.Adicionar(negociacao);
-				this._Mensagem.texto = 'Negociações	importadas com sucesso';
-			});
-		});
+		// Execução em série.
+		// const negociacoes = [];
+
+		// this._Service.ObterNegociacoesDaSemana()
+		// 	.then(
+		// 		semana => {
+		// 			negociacoes.push(...semana);
+		// 			return this._Service.ObterNegociacoesDaSemanaAnterior();
+		// 		}
+		// 	)
+		// 	.then(
+		// 		anterior => {
+		// 			negociacoes.push(...anterior);
+		// 			return this._Service.ObterNegociacoesDaSemanaRetrasada();
+		// 		}
+		// 	)
+		// 	.then(
+		// 		retrasada => {
+		// 			negociacoes.push(...retrasada);
+		// 			negociacoes.forEach(negociacao => this._Negociacoes.Adicionar(negociacao));
+		// 			this._Mensagem.Texto = 'Negociações	importadas	com	sucesso';
+		// 		}
+		// 	)
+		// 	.catch(erro	=> this._Mensagem.Texto	= erro);
 	}
 }

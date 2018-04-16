@@ -25,4 +25,8 @@ class Negociacao {
 	ObterValor() {
 		return this._Valor;
 	}
+
+	Igual(negociacao) {
+		return JSON.stringify(this)	==	JSON.stringify(negociacao);
+	}
 }
