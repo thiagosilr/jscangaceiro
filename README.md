@@ -1,4 +1,5 @@
 # Estudo do Livro Cangaceiro JS (ECMAScript 6)
+Parei o estudo no capítulo 13. Pois o objetivo erá atualizar sobre as novas funcionalidades do JavaScript.
 
 ## GIT
 [Client](https://git-for-windows.github.io/)
